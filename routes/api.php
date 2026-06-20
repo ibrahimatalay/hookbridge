@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\TenantController;
+use App\Http\Controllers\EndpointController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -11,3 +12,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/health', [HealthController::class, 'show']);
 Route::get('/tenants', [TenantController::class, 'index']);
+Route::get('/tenants/{tenant}/endpoints', [EndpointController::class, 'index']);
