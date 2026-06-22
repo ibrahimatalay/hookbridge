@@ -12,6 +12,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/health', [HealthController::class, 'show']);
 Route::get('/tenants', [TenantController::class, 'index']);
-//Route::get('/tenants/{tenant}/endpoints', [EndpointController::class, 'index']);
-//Route::post('/tenants/{tenant}/endpoints', [EndpointController::class, 'store']);
 Route::apiResource('tenants.endpoints', EndpointController::class)->scoped();

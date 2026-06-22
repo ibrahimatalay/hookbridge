@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Endpoint extends Model
 {
+    /** @use HasFactory<\Database\Factories\EventTypeFactory> */
+    use HasFactory;
+
     protected $fillable = ['tenant_id', 'url', 'is_active'];
 
     protected function casts(): array
