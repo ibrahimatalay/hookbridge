@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Tenant extends Model
 {
-    /** @use HasFactory<\Database\Factories\EventTypeFactory> */
+    /** @use HasFactory<\Database\Factories\TenantFactory> */
     use HasFactory;
 
     protected $fillable = ['name'];

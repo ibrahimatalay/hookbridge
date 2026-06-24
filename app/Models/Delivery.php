@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Delivery extends Model
 {
-    /** @use HasFactory<\Database\Factories\EventTypeFactory> */
+    /** @use HasFactory<\Database\Factories\DeliveryFactory> */
     use HasFactory;
 
     protected $fillable = ['event_id', 'endpoint_id', 'status', 'attempts', 'response_status', 'delivered_at'];
