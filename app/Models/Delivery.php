@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Enums\DeliveryStatus;
 
 class Delivery extends Model
 {
@@ -15,7 +16,10 @@ class Delivery extends Model
 
     protected function casts(): array
     {
-        return ['delivered_at' => 'datetime'];
+        return [
+            'delivered_at' => 'datetime',
+            'status' => DeliveryStatus::class,
+        ];
     }
 
     public function event(): BelongsTo

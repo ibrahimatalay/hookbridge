@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Delivery;
 use App\Models\Event;
 use Illuminate\Support\Facades\Http;
+use App\Enums\DeliveryStatus;
 
 class WebhookDispatcher
 {
@@ -37,7 +38,7 @@ class WebhookDispatcher
             );
 
             $delivery->update([
-                'status' => $response->successful() ? 'success' : 'failed',
+                'status' => $response->successful() ? DeliveryStatus::Success : DeliveryStatus::Failed,
                 'attempts' => $delivery->attempts + 1,
                 'response_status' => $response->status(),
                 'delivered_at' => now(),

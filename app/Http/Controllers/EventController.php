@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Http\Requests\StoreEventRequest;
 use App\Services\WebhookDispatcher;
