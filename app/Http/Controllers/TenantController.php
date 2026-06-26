@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tenant;
+use Illuminate\Http\JsonResponse;
 
 class TenantController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
         return response()->json(Tenant::all());
     }

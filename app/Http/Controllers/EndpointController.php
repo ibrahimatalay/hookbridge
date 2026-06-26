@@ -8,15 +8,18 @@ use App\Http\Requests\StoreEndpointRequest;
 use App\Http\Resources\EndpointResource;
 use App\Models\Endpoint;
 use App\Http\Requests\UpdateEndpointRequest;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class EndpointController extends Controller
 {
-    public function index(Tenant $tenant)
+    public function index(Tenant $tenant): AnonymousResourceCollection
     {
         return EndpointResource::collection($tenant->endpoints);
     }
 
-    public function store(StoreEndpointRequest $request, Tenant $tenant)
+    public function store(StoreEndpointRequest $request, Tenant $tenant): JsonResponse
     {
         $endpoint = $tenant->endpoints()->create($request->validated());
 
@@ -25,19 +28,19 @@ class EndpointController extends Controller
             ->setStatusCode(201);
     }
 
-    public function show(Tenant $tenant, Endpoint $endpoint)
+    public function show(Tenant $tenant, Endpoint $endpoint): EndpointResource
     {
         return new EndpointResource($endpoint);
     }
 
-    public function update(UpdateEndpointRequest $request, Tenant $tenant, Endpoint $endpoint)
+    public function update(UpdateEndpointRequest $request, Tenant $tenant, Endpoint $endpoint): EndpointResource
     {
         $endpoint->update($request->validated());
 
         return new EndpointResource($endpoint);
     }
 
-    public function destroy(Tenant $tenant, Endpoint $endpoint)
+    public function destroy(Tenant $tenant, Endpoint $endpoint): Response
     {
         $endpoint->delete();
 

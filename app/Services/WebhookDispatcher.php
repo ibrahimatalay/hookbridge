@@ -45,7 +45,7 @@ class WebhookDispatcher
             ]);
         } catch (\Exception $e) {
             $delivery->update([
-                'status' => 'failed',
+                'status' => DeliveryStatus::Failed,
                 'attempts' => $delivery->attempts + 1,
             ]);
         }
