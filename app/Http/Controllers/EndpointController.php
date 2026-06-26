@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
 use App\Models\Tenant;
 use App\Http\Requests\StoreEndpointRequest;
 use App\Http\Resources\EndpointResource;

@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Scopes\ActiveScope;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 
 #[ScopedBy([ActiveScope::class])]
+#[Fillable(['tenant_id', 'url', 'is_active'])]
 class Endpoint extends Model
 {
     /** @use HasFactory<\Database\Factories\EndpointFactory> */
     use HasFactory;
-
-    protected $fillable = ['tenant_id', 'url', 'is_active'];
 
     protected function casts(): array
     {

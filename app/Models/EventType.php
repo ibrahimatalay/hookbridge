@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 
+#[Fillable(['tenant_id', 'name', 'description'])]
 class EventType extends Model
 {
     /** @use HasFactory<\Database\Factories\EventTypeFactory> */
     use HasFactory;
-
-    protected $fillable = ['tenant_id', 'name', 'description'];
 
     public function tenant(): BelongsTo
     {
