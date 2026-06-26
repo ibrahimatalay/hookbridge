@@ -28,4 +28,9 @@ class Tenant extends Model
     {
         return $this->hasManyThrough(Event::class, EventType::class);
     }
+
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 }
