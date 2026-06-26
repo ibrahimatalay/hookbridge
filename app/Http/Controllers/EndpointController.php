@@ -15,11 +15,15 @@ class EndpointController extends Controller
 {
     public function index(Tenant $tenant): AnonymousResourceCollection
     {
+        $this->authorize('manage', $tenant);
+
         return EndpointResource::collection($tenant->endpoints);
     }
 
     public function store(StoreEndpointRequest $request, Tenant $tenant): JsonResponse
     {
+        $this->authorize('manage', $tenant);
+
         $endpoint = $tenant->endpoints()->create($request->validated());
 
         return (new EndpointResource($endpoint))
@@ -29,11 +33,15 @@ class EndpointController extends Controller
 
     public function show(Tenant $tenant, Endpoint $endpoint): EndpointResource
     {
+        $this->authorize('manage', $tenant);
+
         return new EndpointResource($endpoint);
     }
 
     public function update(UpdateEndpointRequest $request, Tenant $tenant, Endpoint $endpoint): EndpointResource
     {
+        $this->authorize('manage', $tenant);
+
         $endpoint->update($request->validated());
 
         return new EndpointResource($endpoint);
@@ -41,6 +49,8 @@ class EndpointController extends Controller
 
     public function destroy(Tenant $tenant, Endpoint $endpoint): Response
     {
+        $this->authorize('manage', $tenant);
+
         $endpoint->delete();
 
         return response()->noContent();

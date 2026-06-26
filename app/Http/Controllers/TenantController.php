@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tenant;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class TenantController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        return response()->json(Tenant::all());
+        return response()->json($request->user->tenant);
     }
 }
