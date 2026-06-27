@@ -9,6 +9,6 @@ class TenantController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        return response()->json($request->user->tenant);
+        return response()->json($request->user()->tenant);
     }
 }
