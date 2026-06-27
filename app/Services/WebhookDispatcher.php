@@ -6,6 +6,7 @@ use App\Models\Delivery;
 use App\Models\Event;
 use Illuminate\Support\Facades\Http;
 use App\Enums\DeliveryStatus;
+use App\Events\WebhookDeliveryFailed;
 
 class WebhookDispatcher
 {
@@ -48,6 +49,10 @@ class WebhookDispatcher
                 'status' => DeliveryStatus::Failed,
                 'attempts' => $delivery->attempts + 1,
             ]);
+        }
+
+        if ($delivery->status === DeliveryStatus::Failed) {
+            event(new WebhookDeliveryFailed($delivery));
         }
     }
 }
