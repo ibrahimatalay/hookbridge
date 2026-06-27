@@ -16,7 +16,7 @@ class EndpointAuthorizationTest extends TestCase
     {
         $tenantA = Tenant::factory()->create();
         $tenantB = Tenant::factory()->create();
-        $user = USER::factory()->create(['tenant_id' => $tenantA->id]);
+        $user = User::factory()->create(['tenant_id' => $tenantA->id]);
 
         Sanctum::actingAs($user, ['*']);
 
