@@ -10,7 +10,7 @@ use App\Http\Controllers\AuthController;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/health', [HealthController::class, 'show']);
-Route::post('/events', [EventController::class, 'store']);
+Route::post('/events', [EventController::class, 'store'])->middleware('throttle:ingest');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/tenants', [TenantController::class, 'index']);

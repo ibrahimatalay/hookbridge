@@ -10,14 +10,6 @@ use App\Events\WebhookDeliveryFailed;
 
 class WebhookDispatcher
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function dispatch(Event $event): void
     {
         $endpoints = $event->eventType->endpoints;

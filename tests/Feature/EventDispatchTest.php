@@ -53,4 +53,22 @@ class EventDispatchTest extends TestCase
 
         Event::assertDispatched(WebhookDeliveryFailed::class);
     }
+
+    public function test_ingest_endpoint_is_rate_limited(): void
+    {
+        Http::fake();
+        $eventType = EventType::factory()->create();
+
+        foreach (range(1, 60) as $i) {
+            $this->postJson('/api/events', [
+                'event_type_id' => $eventType->id,
+                'payload' => ['n' => $i],
+            ]);
+        }
+
+        $this->postJson('/api/events', [
+            'event_type_id' => $eventType->id,
+            'payload' => ['n' => 61],
+        ])->assertStatus(429);
+    }
 }
